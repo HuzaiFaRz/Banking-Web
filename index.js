@@ -45,16 +45,6 @@ var depositBtn = document.querySelector(".deposit-btn");
 var withDrawBtn = document.querySelector(".withdraw-btn");
 var bankError = document.querySelector(".number-error");
 
-function toGgleLoginRegisterContainer() {
-  toggleContainerLoginBtn.addEventListener("click", () => {
-    formContainer.classList.add("active");
-  });
-  toggleContainerRegisterBtn.addEventListener("click", () => {
-    formContainer.classList.remove("active");
-  });
-}
-toGgleLoginRegisterContainer();
-
 function regisTerLoginPasswordEye() {
   registerPasswordEyeSlash.addEventListener("click", () => {
     registerPasswordEyeSlash.classList.toggle("register-password-eye");
@@ -168,16 +158,12 @@ function registerFormLoginForm() {
       var userKey = "user_" + loginUserEmail.value;
       var storedUserData = JSON.parse(localStorage.getItem(userKey));
 
-      if (
-        storedUserData.password === loginUserPassword.value &&
-        storedUserData.email === loginUserEmail.value
-      ) {
+      if (storedUserData && storedUserData.email === loginUserEmail.value) {
         loginFormError.innerHTML = "Login Successful!";
         loginFormError.style.color = "green";
         userAcountUserName.innerHTML =
           "Hi, " + storedUserData.fName + " " + storedUserData.lName;
 
-        toggleHeading1.innerHTML = "Wait 3 Sec...";
         toggleContentUnVisible();
         function bankAppVisible() {
           loginForm.style.right = "0";
@@ -218,12 +204,12 @@ function registerFormLoginForm() {
     loginForm.style.visibility = "visible";
     loginForm.style.scale = "1";
 
-    // registerForm.style.transition = "all 0.4s linear";
-    // registerForm.style.zIndex = "1";
-    // registerForm.style.opacity = "1";
-    // registerForm.style.visibility = "visible";
-    // registerForm.style.scale = "1";
-    // registerForm.style.left = "0%";
+    registerForm.style.transition = "all 0.4s linear";
+    registerForm.style.zIndex = "0";
+    registerForm.style.opacity = "0";
+    registerForm.style.visibility = "hidden";
+    registerForm.style.scale = "0";
+    registerForm.style.left = "-50%";
 
     formContainerToggle.style.top = "0%";
 
@@ -259,7 +245,7 @@ function registerFormLoginForm() {
     loginForm.reset();
     registerForm.reset();
     // registerFormError.innerHTML = "LogOut!";
-    formContainer.classList.remove("active");
+    // formContainer.classList.remove("active");
     // loginForm.reset();
 
     // console.log("1111");
@@ -396,3 +382,12 @@ deposit();
 
 // let totalBalanceFormatted = formatter.format(totalBalance);
 // document.getElementById("acctBalanceLbl").innerHTML = totalBalanceFormatted;
+function toGgleLoginRegisterContainer() {
+  toggleContainerLoginBtn.addEventListener("click", () => {
+    formContainer.classList.add("active");
+  });
+  toggleContainerRegisterBtn.addEventListener("click", () => {
+    formContainer.classList.remove("active");
+  });
+}
+toGgleLoginRegisterContainer();
