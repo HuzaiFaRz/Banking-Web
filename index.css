@@ -1,0 +1,708 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"); */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  user-select: none;
+  font-family: "Comfortaa", sans-serif;
+}
+input {
+  cursor: text;
+}
+*:focus {
+  outline: none;
+}
+:root {
+  --color-1: white;
+  --color-2: #5c4033;
+  --color-3: black;
+  --color-4: rgba(0, 0, 0, 0.35);
+}
+html,
+body {
+  transition: all 0.6s linear;
+  width: 100%;
+  height: 100%;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./john-towner-JgOeRuGD_Y4-unsplash.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding: 0 50px;
+}
+
+.forms-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 700px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+}
+
+.register-form {
+  transition: all 0.4s linear;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 50px;
+  z-index: 5;
+  opacity: 1;
+  visibility: visible;
+  scale: 1;
+}
+.forms-container.active .register-form {
+  transition: all 0.4s linear;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  scale: 0;
+  left: -50%;
+}
+.login-form {
+  transition: all 0.4s linear;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0 50px;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  scale: 0;
+}
+.forms-container.active .login-form {
+  transition: all 0.4s linear;
+  z-index: 5;
+  opacity: 1;
+  visibility: visible;
+  scale: 1;
+  right: 50%;
+}
+
+.forms-container.active .register-form {
+  transition: all 0.4s linear;
+  opacity: 0;
+}
+.User-Acount-User-Name {
+  color: var(--color-1);
+}
+.form-main-heading {
+  color: var(--color-1);
+}
+.register-form-p,
+.login-form-p {
+  color: red;
+  font-size: 15px;
+  color: var(--color-1);
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+.form-icons {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+}
+.icon {
+  color: var(--color-1);
+  border: 1px solid var(--color-1);
+  padding: 10px;
+}
+.Label-Login-Email,
+.Label-Login-Password,
+.Label-Register-Email,
+.Label-Register-Password,
+.Label-Register-First-Name,
+.Label-Register-Last-Name {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--color-1);
+}
+#Login-Email,
+#Login-Password,
+#Register-Email,
+#Register-Password,
+#Register-First-Name,
+#Register-Last-Name {
+  padding-left: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  outline: none;
+  border: none;
+  font-weight: 900;
+  text-transform: none;
+  font-size: 16px;
+  color: var(--color-1);
+  background-color: var(--color-3);
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#Register-First-Name,
+#Register-Last-Name {
+  text-transform: capitalize;
+}
+
+.register-password-eye-slash,
+.login-password-eye-slash {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,1)'%3E%3Cpath d='M4.52047 5.93457L1.39366 2.80777L2.80788 1.39355L22.6069 21.1925L21.1927 22.6068L17.8827 19.2968C16.1814 20.3755 14.1638 21.0002 12.0003 21.0002C6.60812 21.0002 2.12215 17.1204 1.18164 12.0002C1.61832 9.62282 2.81932 7.5129 4.52047 5.93457ZM14.7577 16.1718L13.2937 14.7078C12.902 14.8952 12.4634 15.0002 12.0003 15.0002C10.3434 15.0002 9.00026 13.657 9.00026 12.0002C9.00026 11.537 9.10522 11.0984 9.29263 10.7067L7.82866 9.24277C7.30514 10.0332 7.00026 10.9811 7.00026 12.0002C7.00026 14.7616 9.23884 17.0002 12.0003 17.0002C13.0193 17.0002 13.9672 16.6953 14.7577 16.1718ZM7.97446 3.76015C9.22127 3.26959 10.5793 3.00016 12.0003 3.00016C17.3924 3.00016 21.8784 6.87992 22.8189 12.0002C22.5067 13.6998 21.8038 15.2628 20.8068 16.5925L16.947 12.7327C16.9821 12.4936 17.0003 12.249 17.0003 12.0002C17.0003 9.23873 14.7617 7.00016 12.0003 7.00016C11.7514 7.00016 11.5068 7.01833 11.2677 7.05343L7.97446 3.76015Z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 55%;
+
+  right: 2%;
+}
+.register-password-eye-slash.register-password-eye,
+.login-password-eye-slash.login-password-eye {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,1)'%3E%3Cpath d='M1.18164 12C2.12215 6.87976 6.60812 3 12.0003 3C17.3924 3 21.8784 6.87976 22.8189 12C21.8784 17.1202 17.3924 21 12.0003 21C6.60812 21 2.12215 17.1202 1.18164 12ZM12.0003 17C14.7617 17 17.0003 14.7614 17.0003 12C17.0003 9.23858 14.7617 7 12.0003 7C9.23884 7 7.00026 9.23858 7.00026 12C7.00026 14.7614 9.23884 17 12.0003 17ZM12.0003 15C10.3434 15 9.00026 13.6569 9.00026 12C9.00026 10.3431 10.3434 9 12.0003 9C13.6571 9 15.0003 10.3431 15.0003 12C15.0003 13.6569 13.6571 15 12.0003 15Z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 55%;
+  right: 2%;
+}
+#Login-Email:invalid,
+#Login-Password:invalid,
+#Register-Email:invalid,
+#Register-Password:invalid,
+#Register-First-Name:invalid,
+#Register-Last-Name:invalid {
+  transition: all 0.4s linear;
+  border-bottom: 2px solid red;
+}
+#Login-Email:valid,
+#Login-Password:valid,
+#Register-Email:valid,
+#Register-Password:valid,
+#Register-First-Name:valid,
+#Register-Last-Name:valid {
+  transition: all 0.4s linear;
+  border-bottom: 2px solid var(--color-1);
+}
+#Login-Email::placeholder,
+#Login-Password::placeholder,
+#Register-Email::placeholder,
+#Register-Password::placeholder,
+#Register-Last-Name::placeholder,
+#Register-First-Name::placeholder {
+  color: var(--color-1);
+}
+.login-btn,
+.register-btn {
+  padding: 10px 40px;
+  border: none;
+  background-color: var(--color-3);
+  border: 1px solid var(--color-1);
+  border-radius: 8px;
+  color: var(--color-1);
+}
+
+.toggle-container {
+  transition: all 0.3s ease-in-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 150px 0 0 100px;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(20px);
+}
+
+.toggle-col {
+  transition: all 0.4s linear;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.toggle-container-right {
+  transition: all 0.4s linear;
+  z-index: 5;
+  opacity: 1;
+  visibility: visible;
+  left: 0;
+}
+.forms-container.active .toggle-container-right {
+  transition: all 0.4s linear;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  left: 100%;
+}
+.toggle-container-left {
+  transition: all 0.4s linear;
+  z-index: 0;
+  opacity: 0;
+  visibility: hidden;
+  top: 100%;
+}
+.forms-container.active .toggle-container-left {
+  transition: all 0.4s linear;
+  z-index: 5;
+  opacity: 1;
+  visibility: visible;
+  top: 0;
+}
+
+.toggle-heading {
+  font-weight: 900;
+}
+.toggle-heading,
+.toggle-h5 {
+  text-align: center;
+  color: var(--color-1);
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  line-height: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.toggle-h5 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.toggle-container-login-btn,
+.toggle-container-register-btn {
+  padding: 10px 40px;
+  background-color: transparent;
+  border-radius: 8px;
+  color: var(--color-1);
+  border: 1px solid var(--color-1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.bank-container {
+  transition: all 0.8s ease-in-out;
+  position: absolute;
+  left: 0;
+  visibility: visible;
+  opacity: 1;
+  rotate: 0deg;
+  /*  rotate: 40deg;
+  opacity: 0;
+  visibility: hidden;
+  left: 100%;*/
+  width: 100%;
+  height: 100%;
+  z-index: 5000000;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(15px);
+}
+.bank-container-form {
+  width: 100%;
+  height: 100%;
+  /* background: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.current-balance,
+.deposit-withdraw {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #ffff;
+  padding: 10px 30px;
+  gap: 20px;
+}
+.current-balance-value {
+  color: #ffff;
+}
+.current-balance > span {
+  color: #ffff;
+}
+.user-bank {
+  position: absolute;
+  color: #fff;
+  top: 5%;
+  font-size: 40px;
+}
+.number-error {
+  color: red;
+  font-weight: 900;
+}
+.suggest {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
+.log-out,
+.delete-account {
+  color: var(--color-1);
+}
+.log-out:hover,
+.delete-account:hover {
+  text-decoration: underline;
+}
+.deposit-withdraw-div {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+.deposit-withdraw-input {
+  width: 100%;
+  /* border: 1px solid #fff; */
+  padding-left: 12px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-weight: 900;
+  font-size: 16px;
+  color: var(--color-1);
+  background-color: var(--color-3);
+  /* width: 300px; */
+  box-shadow: 0px 0px 10px #fff;
+  /* margin-left: 20px;
+  margin-right: 20px; */
+}
+.deposit-withdraw-input::placeholder {
+  color: var(--color-1);
+}
+
+.deposit-btn,
+.withdraw-btn {
+  padding: 10px 20px;
+  background-color: black;
+  color: #ffff;
+  border: 1px solid #ffff;
+  border-radius: 12px;
+}
+.deposit-btn:hover,
+.withdraw-btn:hover {
+  background-color: white;
+  color: black;
+  font-weight: 9000;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .forms-container {
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .register-form {
+    transition: all 0.4s linear;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 50px;
+    z-index: 5;
+    opacity: 1;
+    visibility: visible;
+    scale: 1;
+  }
+  .forms-container.active .register-form {
+    transition: all 0.4s linear;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    scale: 0;
+    left: -50%;
+  }
+  .login-form {
+    transition: all 0.4s linear;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 50px;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    scale: 0;
+  }
+  .forms-container.active .login-form {
+    transition: all 0.4s linear;
+    z-index: 5;
+    opacity: 1;
+    visibility: visible;
+    scale: 1;
+    top: 0%;
+    right: 0;
+  }
+
+  .forms-container.active .register-form {
+    transition: all 0.4s linear;
+    opacity: 0;
+  }
+
+  .toggle-container {
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 0 0;
+    z-index: 1000;
+    backdrop-filter: blur(20px);
+  }
+
+  .toggle-col {
+    transition: all 0.4s linear;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .toggle-container-right {
+    transition: all 0.4s linear;
+    z-index: 5;
+    opacity: 1;
+    visibility: visible;
+    left: 0;
+  }
+
+  .toggle-container-left {
+    transition: all 0.4s linear;
+    z-index: 5;
+    opacity: 1;
+    visibility: visible;
+    top: 0%;
+  }
+  .forms-container.active .toggle-container-right {
+    transition: all 0.4s linear;
+    z-index: 0;
+    opacity: 0;
+    visibility: hidden;
+    left: 100%;
+  }
+
+  .forms-container.active .toggle-container-left {
+    transition: all 0.4s linear;
+    z-index: 5;
+    opacity: 1;
+    visibility: visible;
+    top: 0;
+  }
+
+  .toggle-heading {
+    font-weight: 900;
+  }
+  .toggle-heading,
+  .toggle-h5 {
+    text-align: center;
+    color: var(--color-1);
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .toggle-h5 {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .toggle-container-login-btn,
+  .toggle-container-register-btn {
+    padding: 10px 40px;
+    background-color: transparent;
+    border-radius: 8px;
+    color: var(--color-1);
+    border: 1px solid var(--color-1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .bank-container {
+    transition: all 0.8s ease-in-out;
+    position: absolute;
+    /*  left: 0;
+  visibility: visible;
+  opacity: 1;
+  rotate: 0deg;*/
+    rotate: 40deg;
+    opacity: 0;
+    visibility: hidden;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    z-index: 5000000;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+  }
+  .bank-container-form {
+    width: 100%;
+    height: 100%;
+    /* background: red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  .current-balance,
+  .deposit-withdraw {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #ffff;
+    padding: 10px 30px;
+    gap: 20px;
+  }
+  .current-balance-value {
+    color: #ffff;
+  }
+  .current-balance > span {
+    color: #ffff;
+  }
+  .deposit-withdraw-div {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+  /* .tranfer-input-email-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+} */
+  /* .current-balance-div {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+} */
+  .deposit-withdraw-input {
+    width: 100%;
+    /* border: 1px solid #fff; */
+    padding-left: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-weight: 900;
+    font-size: 16px;
+    color: var(--color-1);
+    background-color: var(--color-3);
+    /* width: 300px; */
+    box-shadow: 0px 0px 10px #fff;
+    /* margin-left: 20px;
+  margin-right: 20px; */
+  }
+  .deposit-withdraw-input::placeholder {
+    color: var(--color-1);
+  }
+
+  .deposit-btn,
+  .withdraw-btn {
+    padding: 10px 20px;
+    background-color: black;
+    color: #ffff;
+    border: 1px solid #ffff;
+    border-radius: 12px;
+  }
+  .deposit-btn:hover,
+  .withdraw-btn:hover {
+    background-color: white;
+    color: black;
+    font-weight: 9000;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  .user-bank {
+    position: absolute;
+    color: #fff;
+    top: 5%;
+    font-size: 40px;
+  }
+  .number-error {
+    color: red;
+    font-weight: 900;
+  }
+}

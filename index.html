@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bank</title>
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+    <div class="forms-container" id="Forms-Container">
+        <form class="login-form" id="Login-Form">
+            <h1 class="form-main-heading">Log In</h1>
+            <h2 class="User-Acount-User-Name"></h2>
+            <p class="login-form-p">
+                or Use Your Email and Password
+            </p>
+            <label for="Login-Email" class="Label-Login-Email">
+                Enter Email:
+                <input type="email" id="Login-Email" placeholder="Email" />
+            </label>
+            <label for="Login-Password" class="Label-Login-Password">
+                Enter Password:
+                <input type="password" id="Login-Password" placeholder="Password" />
+                <i class="login-password-eye-slash"></i>
+            </label>
+
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+
+        <form class="register-form" id="Register-Form">
+            <h1 class="form-main-heading">Register</h1>
+            <div class="form-icons">
+                <a href="javascript:void(0)"><i class="icon fa-brands fa-google-plus-g"></i></a>
+                <a href="javascript:void(0)"><i class="icon fa-brands fa-facebook-f"></i></a>
+                <a href="javascript:void(0)"><i class="icon fa-brands fa-github"></i></i></a>
+                <a href="javascript:void(0)"><i class="icon fa-brands fa-linkedin-in"></i></a>
+            </div>
+            <p class="register-form-p">
+                or Use Your Email and Password
+            </p>
+            <label for="Register-First-Name" class="Label-Register-First-Name">
+                Enter First Name:
+                <input type="text" id="Register-First-Name" placeholder="First Name" />
+            </label>
+            <label for="Register-Last-Name" class="Label-Register-Last-Name">
+                Enter Last Name:
+                <input type="text" id="Register-Last-Name" placeholder="Last Name" />
+            </label>
+            <label for="Register-Email" class="Label-Register-Email">
+                Enter Email:
+                <input type="email" id="Register-Email" placeholder="Email" />
+            </label>
+            <label for="Register-Password" class="Label-Register-Password">
+                Enter Password:
+                <input type="password" id="Register-Password" placeholder="Password" />
+                <i class="register-password-eye-slash"></i>
+            </label>
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+
+  <div class="toggle-container">
+            <div class="toggle-col toggle-container-left">
+                <h1 class="toggle-heading" id="toggle-heading-1">Welcome Back!</h1>
+                <h5 class="toggle-h5">Register With Your Personal Details to Use all of Site Features</h5>
+                <button type="submit" class="toggle-container-register-btn">Register</button>
+            </div>
+            <div class="toggle-col toggle-container-right">
+                <h1 class="toggle-heading" id="toggle-heading-2">Hello, Friend!</h1>
+                <h5 class="toggle-h5">Register With Your Personal Details to Use all of Site Features</h5>
+                <button type="submit" class="toggle-container-login-btn">Log In</button>
+            </div>
+        </div>
+
+        <div class="bank-container">
+            <form class="bank-container-form">
+                <div class="user-bank"></div>
+                <div class="current-balance">
+                    <h3 class="current-balance-value"></h3>
+                </div>
+                <div class="deposit-withdraw">
+                    <input type="number" placeholder="Enter" class="deposit-withdraw-input">
+                    <div class="number-error"></div>
+                    <div class="deposit-withdraw-div">
+                        Deposit
+                        <button type="submit" class="deposit-btn">Deposit</button>
+                        Withdraw
+                        <button type="submit" class="withdraw-btn">Withdraw</button>
+                    </div>
+                </div>
+                <div class="suggest">
+                    <div class="log-out">Log Out</div>
+                    <div class="delete-account">Delete Acount</div>
+                </div>
+            </form>
+        </div>
+
+      
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="index.js"></script>
+</body>
+
+</html>
