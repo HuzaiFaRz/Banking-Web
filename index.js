@@ -180,16 +180,26 @@ function registerFormLoginForm() {
         toggleHeading1.innerHTML = "Wait 3 Sec...";
         toggleContentUnVisible();
         function bankAppVisible() {
+          loginForm.style.right = "0";
+          loginForm.style.zIndex = "0";
           loginForm.style.opacity = "0";
-          loginForm.style.right = "-100%";
+          loginForm.style.visibility = "hidden";
+          loginForm.style.scale = "0";
+
+          registerForm.style.transition = "all 0.4s linear";
+          registerForm.style.zIndex = "0";
           registerForm.style.opacity = "0";
-          registerForm.style.left = "-100%";
+          registerForm.style.visibility = "hidden";
+          registerForm.style.scale = "0";
+          registerForm.style.left = "-50%";
+
           formContainerToggle.style.top = "-100%";
+
           bankContainer.style.left = "0%";
           bankContainer.style.opacity = "1";
           bankContainer.style.visibility = "visible";
           bankContainer.style.rotate = "0deg";
-          bankAcountUserName.style.fontSize = "16px";
+
           bankAcountUserName.innerHTML =
             "Hello Again " + storedUserData.fName + " " + storedUserData.lName;
         }
@@ -202,21 +212,28 @@ function registerFormLoginForm() {
   });
 
   function bankAppUnVisible() {
-    registerForm.style.left = "-100%";
-    registerForm.style.visibility = "hidden";
-    registerForm.style.opacity = "0";
-    registerForm.style.scale = "0";
-    loginForm.style.opacity = "1";
     loginForm.style.right = "50%";
+    loginForm.style.zIndex = "1";
+    loginForm.style.opacity = "1";
     loginForm.style.visibility = "visible";
     loginForm.style.scale = "1";
-    formContainerToggle.style.top = "0";
+
+    // registerForm.style.transition = "all 0.4s linear";
+    // registerForm.style.zIndex = "1";
+    // registerForm.style.opacity = "1";
+    // registerForm.style.visibility = "visible";
+    // registerForm.style.scale = "1";
+    // registerForm.style.left = "0%";
+
+    formContainerToggle.style.top = "0%";
+
     bankContainer.style.left = "100%";
     bankContainer.style.opacity = "0";
     bankContainer.style.visibility = "hidden";
     bankContainer.style.rotate = "40deg";
     bankAcountUserName.style.fontSize = "16px";
   }
+
   function loginFormVisible() {
     formContainer.classList.add("active");
   }
@@ -235,16 +252,23 @@ function registerFormLoginForm() {
     toggleH5.style.opacity = "1";
   }
   logOutBtn.addEventListener("click", function () {
-    loginForm.reset();
+    // location.reload();
     bankAppUnVisible();
-    console.log("1111");
-    loginFormError.innerHTML = "LogOut!";
+    loginFormError.innerHTML = "LogOut Successful!";
     loginFormError.style.color = "red";
-    console.log("1111111111");
+    loginForm.reset();
+    registerForm.reset();
+    // registerFormError.innerHTML = "LogOut!";
+    formContainer.classList.remove("active");
+    // loginForm.reset();
 
-    toggleHeading1.innerHTML = "Welcome Back!";
-    toggleContentVisible();
-    formContainer.classList.add("active");
+    // console.log("1111");
+    // loginFormError.innerHTML = "LogOut!";
+    // loginFormError.style.color = "red";
+    // console.log("1111111111");
+
+    // toggleHeading1.innerHTML = "Welcome Back!";
+    // toggleContentVisible();
   });
 }
 registerFormLoginForm();
