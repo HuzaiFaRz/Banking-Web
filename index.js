@@ -111,6 +111,7 @@ function registerFormLoginForm() {
         return (
           (registerFormError.innerHTML = "User Already Exists. Please log in."),
           (registerFormError.style.color = "red"),
+          setTimeout(loginFormVisible, 2000),
           registerForm.reset()
         );
       }
