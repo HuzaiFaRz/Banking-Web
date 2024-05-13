@@ -133,11 +133,10 @@ function registerFormLoginForm() {
     //   setTimeout(loginFormVisibleCounter, 1000);
     // }
     // loginFormVisibleCounter();
-    deleteAcountBtn.addEventListener("click", function () {
-      location.reload();
-    });
   });
-
+  deleteAcountBtn.addEventListener("click", function () {
+    location.reload();
+  });
   loginForm.addEventListener("submit", function (j) {
     j.preventDefault();
 
