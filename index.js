@@ -134,10 +134,7 @@ function registerFormLoginForm() {
     // }
     // loginFormVisibleCounter();
     deleteAcountBtn.addEventListener("click", function () {
-      loginForm.reset();
-      registerForm.reset();
-      localStorage.removeItem("userKey", registerFormDataStore);
-      console.log("555");
+      location.reload();
     });
   });
 
