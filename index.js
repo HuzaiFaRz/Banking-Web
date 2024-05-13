@@ -260,128 +260,50 @@ function registerFormLoginForm() {
 registerFormLoginForm();
 
 function deposit() {
-  var currentBankBalance = 0;
+  var currentBankBalance = localStorage.getItem("amount") || 0;
   userBankAcountBalance.innerHTML = currentBankBalance;
 
   depositBtn.addEventListener("click", function (a) {
     a.preventDefault();
-
+    var depoAmount = parseFloat(depositWithdrawInput.value);
     if (isNaN(depositWithdrawInput.value) && depositWithdrawInput.value <= 0) {
       bankError.innerHTML = "Enter Valid Value";
     } else if (depositWithdrawInput.value >= 50000) {
       bankError.innerHTML = "Amount Greater";
     } else {
-      bankError.innerHTML = " ";
-      userBankAcountBalance.innerHTML =
-        currentBankBalance + depositWithdrawInput.value;
+      currentBankBalance = parseFloat(currentBankBalance) + depoAmount;
+      userBankAcountBalance.innerHTML = currentBankBalance;
+      localStorage.setItem("amount", currentBankBalance);
       depositWithdrawInput.value = "";
+      bankError.innerHTML = " ";
     }
   });
 }
 deposit();
 
-// function deposit() {
-//   var currentBankBalance = localStorage.getItem("bankBalance") || 0;
-//   userBankAcountBalance.innerHTML = currentBankBalance;
+function withDraw() {
+  var currentBankBalance = localStorage.getItem("amount") || 0;
+  userBankAcountBalance.innerHTML = currentBankBalance;
+  withDrawBtn.addEventListener("click", function (l) {
+    l.preventDefault();
+    var depoAmount = parseFloat(depositWithdrawInput.value);
+    if (isNaN(depositWithdrawInput.value) && depositWithdrawInput.value <= 0) {
+      bankError.innerHTML = "Enter Valid Value";
+    } else if (depositWithdrawInput.value >= 50000) {
+      bankError.innerHTML = "Amount Greater";
+    } else if (depositWithdrawInput.value < currentBankBalance) {
+      bankError.innerHTML = "Amount Greater Is Your Current Balance";
+    } else {
+      currentBankBalance = parseFloat(currentBankBalance) - depoAmount;
+      userBankAcountBalance.innerHTML = currentBankBalance;
+      localStorage.setItem("amount", currentBankBalance);
+      depositWithdrawInput.value = "";
+      bankError.innerHTML = " ";
+    }
+  });
+}
+withDraw();
 
-//   depositBtn.addEventListener("click", function (e) {
-//     e.preventDefault();
-
-//     var depositAmount = parseFloat(depositWithdrawInput.value);
-
-//     if (isNaN(depositAmount) || depositAmount <= 0) {
-//       bankError.innerHTML = "Enter a valid amount";
-//     } else if (depositAmount >= 50000) {
-//       bankError.innerHTML = "Amount greater than limit";
-//     } else {
-//       // Update bank balance
-//       currentBankBalance = parseFloat(currentBankBalance) + depositAmount;
-
-//       // Update UI
-//       userBankAcountBalance.innerHTML = currentBankBalance;
-
-//       // Store updated balance in localStorage
-//       localStorage.setItem("bankBalance", currentBankBalance);
-
-//       // Clear input and error messages
-//       depositWithdrawInput.value = "";
-//       bankError.innerHTML = "";
-//     }
-//   });
-// }
-
-// deposit();
-
-// const acctBalanceLbl = document.getElementById("acctBalanceLbl");
-// const deposits = [];
-// const withdrawals = [];
-// let totalBalance = 25;
-// const userDeposit = document.getElementById("userDeposit");
-// const btnDeposit = document.getElementById("btnDeposit");
-// const userWithdraw = document.getElementById("userWithdraw");
-// const btnWithdraw = document.getElementById("btnWithdraw");
-
-// btnDeposit.addEventListener("click", () => {
-//   // checks if deposit is a number
-//   if (isNaN(userDeposit.value)) {
-//     alert("Please enter a number.");
-//     return (userDeposit.value = "");
-//   } else {
-//     // checks if deposit meets parameters
-//     if (userDeposit.value < 0.01 || userDeposit.value > 10000) {
-//       alert("You can only deposit between $0.01 and $10,000.");
-//       return (userDeposit.value = "");
-//     } else {
-//       // push deposit to array
-//       deposits.push(Number(userDeposit.value));
-//       // calculate Total Balance
-//       totalBalance += Number(userDeposit.value);
-
-//       // format TotalBalance to show $ XX.XX (2 decimal places)
-//       let totalBalanceFormatted = formatter.format(totalBalance);
-//       document.getElementById("acctBalanceLbl").innerHTML =
-//         totalBalanceFormatted;
-
-//       // print deposit to console to verify success
-//       console.log("$" + userDeposit.value);
-//       return (userDeposit.value = "");
-//     }
-//   }
-// });
-
-// // accept withdrawals from user, store withdrawals in array
-// btnWithdraw.addEventListener("click", () => {
-//   // checks if withdrawal is a number
-//   if (isNaN(userWithdraw.value)) {
-//     alert("Please enter a number.");
-//     return (userWithdraw.value = "");
-//   } else {
-//     // checks if withdrawal meets parameters
-//     if (userWithdraw.value > totalBalance - 5) {
-//       alert("Your total balance cannot drop below $5.");
-//       return (userWithdraw.value = "");
-//     } else {
-//       // push withdrawal to array
-//       withdrawals.push(Number(userWithdraw.value));
-//       // calculate Total Balance
-//       totalBalance -= Number(userWithdraw.value);
-
-//       // format TotalBalance to show $ XX.XX (2 decimal places)
-//       let totalBalanceFormatted = formatter.format(totalBalance);
-//       document.getElementById("acctBalanceLbl").innerHTML =
-//         totalBalanceFormatted;
-
-//       // print withdrawal to console to verfify success
-//       console.log("$" + userWithdraw.value);
-//       return (userWithdraw.value = "");
-//     }
-//   }
-// });
-
-// // format TotalBalance to show $ XX.XX (2 decimal places)
-
-// let totalBalanceFormatted = formatter.format(totalBalance);
-// document.getElementById("acctBalanceLbl").innerHTML = totalBalanceFormatted;
 function toGgleLoginRegisterContainer() {
   toggleContainerLoginBtn.addEventListener("click", () => {
     formContainer.classList.add("active");
