@@ -222,9 +222,6 @@ function registerFormLoginForm() {
   function loginFormVisible() {
     formContainer.classList.add("active");
   }
-  // function loginFormUnVisible() {
-  //   formContainer.classList.remove("active");
-  // }
 
   function toggleContentUnVisible() {
     toggleContainerRegisterBtn.style.trasition = "all 0.6s linear";
@@ -237,23 +234,10 @@ function registerFormLoginForm() {
     toggleH5.style.opacity = "1";
   }
   logOutBtn.addEventListener("click", function () {
-    // location.reload();
     bankAppUnVisible();
     loginFormError.innerHTML = "LogOut Successful!";
     loginFormError.style.color = "red";
     loginForm.reset();
-    // registerForm.reset();
-    // registerFormError.innerHTML = "LogOut!";
-    // formContainer.classList.remove("active");
-    // loginForm.reset();
-
-    // console.log("1111");
-    // loginFormError.innerHTML = "LogOut!";
-    // loginFormError.style.color = "red";
-    // console.log("1111111111");
-
-    // toggleHeading1.innerHTML = "Welcome Back!";
-    // toggleContentVisible();
   });
 }
 registerFormLoginForm();
@@ -293,86 +277,3 @@ function withdraw() {
   });
 }
 withdraw();
-
-// function deposit() {
-//   depositBtn.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     var depositAmount = parseFloat(depositWithdrawInput.value);
-//     if (isNaN(depositAmount) || depositAmount <= 0) {
-//       bankError.innerHTML = "Enter a valid deposit amount";
-//     } else {
-//       var currentBankBalance = 0;
-//       userBankAcountBalance.innerHTML = currentBankBalance;
-//       currentBankBalance += depositAmount;
-
-//       userBankAcountBalance.innerHTML = currentBankBalance;
-//       depositWithdrawInput.value = "";
-//       bankError.innerHTML = "";
-//     }
-//   });
-// }
-// deposit();
-
-// function withdraw() {
-//   withDrawBtn.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     var withdrawAmount = parseFloat(depositWithdrawInput.value);
-//     var currentBankBalance = 0;
-//     if (isNaN(withdrawAmount) || withdrawAmount <= 0) {
-//       bankError.innerHTML = "Enter a valid withdrawal amount";
-//     } else if (withdrawAmount > currentBankBalance) {
-//       bankError.innerHTML = "Insufficient balance";
-//     } else {
-//       currentBankBalance -= withdrawAmount;
-//       localStorage.setItem("amount", currentBankBalance);
-//       userBankAcountBalance.innerHTML = currentBankBalance;
-//       depositWithdrawInput.value = "";
-//       bankError.innerHTML = "";
-//     }
-//   });
-// }
-// withdraw();
-// function deposit() {
-//   var currentBankBalance = localStorage.getItem("amount") || 0;
-//   userBankAcountBalance.innerHTML = currentBankBalance;
-
-//   depositBtn.addEventListener("click", function (a) {
-//     a.preventDefault();
-//     var depoAmount = parseFloat(depositWithdrawInput.value);
-//     if (isNaN(depositWithdrawInput.value) && depositWithdrawInput.value <= 0) {
-//       bankError.innerHTML = "Enter Valid Value";
-//     } else if (depositWithdrawInput.value >= 50000) {
-//       bankError.innerHTML = "Amount Greater";
-//     } else {
-//       currentBankBalance = parseFloat(currentBankBalance) + depoAmount;
-//       userBankAcountBalance.innerHTML = currentBankBalance;
-//       localStorage.setItem("amount", currentBankBalance);
-//       depositWithdrawInput.value = "";
-//       bankError.innerHTML = " ";
-//     }
-//   });
-// }
-// deposit();
-
-// function withDraw() {
-//   var currentBankBalance = localStorage.getItem("amount") || 0;
-//   userBankAcountBalance.innerHTML = currentBankBalance;
-//   withDrawBtn.addEventListener("click", function (f) {
-//     f.preventDefault();
-//     var depoAmount = parseFloat(depositWithdrawInput.value);
-//     if (isNaN(depositWithdrawInput.value) && depositWithdrawInput.value <= 0) {
-//       bankError.innerHTML = "Enter Valid Value";
-//     } else if (depositWithdrawInput.value >= 50000) {
-//       bankError.innerHTML = "Amount Greater";
-//     } else if (parseFloat(currentBankBalance) < depoAmount) {
-//       bankError.innerHTML = "Amount Greater Is Your Current Balance";
-//     } else {
-//       currentBankBalance = parseFloat(currentBankBalance) - depoAmount;
-//       userBankAcountBalance.innerHTML = currentBankBalance;
-//       localStorage.setItem("amount", currentBankBalance);
-//       depositWithdrawInput.value = "";
-//       bankError.innerHTML = " ";
-//     }
-//   });
-// }
-// withDraw();
