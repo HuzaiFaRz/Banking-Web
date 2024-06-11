@@ -44,6 +44,32 @@ function toGgleLoginRegisterContainer() {
   });
 }
 toGgleLoginRegisterContainer();
+function formError() {
+  registerFormError.style.backgroundColor = "rgb(189, 132, 132)";
+  registerFormError.style.color = "white";
+  registerFormError.style.padding = "10px 15px";
+  registerFormError.style.borderRadius = "15px";
+  registerFormError.style.fontSize = "13px";
+  loginFormError.style.backgroundColor = "rgb(189, 132, 132)";
+  loginFormError.style.color = "white";
+  loginFormError.style.padding = "10px 15px";
+  loginFormError.style.borderRadius = "15px";
+  loginFormError.style.fontSize = "13px";
+}
+function formSuccess() {
+  registerFormError.style.backgroundColor = "white";
+  registerFormError.style.color = "green";
+  registerFormError.style.padding = "10px 15px";
+  registerFormError.style.borderRadius = "15px";
+  registerFormError.style.fontSize = "13px";
+  registerFormError.style.fontWeight = "900";
+  loginFormError.style.backgroundColor = "white";
+  loginFormError.style.color = "green";
+  loginFormError.style.padding = "10px 15px";
+  loginFormError.style.borderRadius = "15px";
+  loginFormError.style.fontSize = "13px";
+  loginFormError.style.fontWeight = "900";
+}
 
 function regisTerLoginPasswordEye() {
   registerPasswordEyeSlash.addEventListener("click", () => {
@@ -72,27 +98,25 @@ function registerFormLoginForm() {
     if (registerUserFirstName.value === "") {
       return (
         (registerFormError.innerHTML = "Please Fill First Name Field"),
-        (registerFormError.style.color = "red")
+        formError()
       );
     } else if (registerUserLastName.value === "") {
       return (
         (registerFormError.innerHTML = "Please Fill Last Name Field"),
-        (registerFormError.style.color = "red")
+        formError()
       );
     } else if (registerUserEmail.value === "") {
       return (
-        (registerFormError.innerHTML = "Please Fill Email Field"),
-        (registerFormError.style.color = "red")
+        (registerFormError.innerHTML = "Please Fill Email Field"), formError()
       );
     } else if (registerUserPassword.value === "") {
       return (
         (registerFormError.innerHTML = "Please Fill Password Field"),
-        (registerFormError.style.color = "red")
+        formError()
       );
     } else if (registerUserPassword.value.length < 8) {
       return (
-        (registerFormError.innerHTML = "Password Must Be 8 Least"),
-        (registerFormError.style.color = "red")
+        (registerFormError.innerHTML = "Password Must Be 8 Least"), formError()
       );
     } else {
       var userKey = "user_" + registerUserEmail.value;
@@ -100,8 +124,8 @@ function registerFormLoginForm() {
       if (localStorage.getItem(userKey)) {
         return (
           (registerFormError.innerHTML = "User Already Exists. Please log in."),
-          (registerFormError.style.color = "red"),
-          setTimeout(loginFormVisible, 2000),
+          formError(),
+          setTimeout(loginFormVisible, 1000),
           registerForm.reset()
         );
       }
@@ -115,16 +139,9 @@ function registerFormLoginForm() {
 
       localStorage.setItem(userKey, JSON.stringify(registerFormDataStore));
 
-      registerFormError.innerHTML = "Registered Successful!";
-      registerFormError.style.color = "green";
+      (registerFormError.innerHTML = "Registered Successful!"), formSuccess();
       registerForm.reset();
-      setTimeout(loginFormVisible, 3000);
-
-      userAcountUserName.innerHTML =
-        "Hi, " +
-        registerFormDataStore.fName +
-        " " +
-        registerFormDataStore.lName;
+      setTimeout(loginFormVisible, 1000);
     }
 
     // eHeading2Value = 3;
@@ -142,13 +159,11 @@ function registerFormLoginForm() {
 
     if (loginUserEmail.value === "") {
       return (
-        (loginFormError.innerHTML = "Please Fill Email Field"),
-        (loginFormError.style.color = "red")
+        (loginFormError.innerHTML = "Please Fill Email Field"), formError()
       );
     } else if (loginUserPassword.value === "") {
       return (
-        (loginFormError.innerHTML = "Please Fill Password Field"),
-        (loginFormError.style.color = "red")
+        (loginFormError.innerHTML = "Please Fill Password Field"), formError()
       );
     } else {
       var userKey = "user_" + loginUserEmail.value;
@@ -160,9 +175,7 @@ function registerFormLoginForm() {
         storedUserData.password === loginUserPassword.value
       ) {
         loginFormError.innerHTML = "Login Successful!";
-        loginFormError.style.color = "green";
-        userAcountUserName.innerHTML =
-          "Hi, " + storedUserData.fName + " " + storedUserData.lName;
+        formSuccess();
 
         function bankAppVisible() {
           loginForm.style.right = "0";
@@ -184,14 +197,13 @@ function registerFormLoginForm() {
           bankContainer.style.opacity = "1";
           bankContainer.style.visibility = "visible";
           bankContainer.style.rotate = "0deg";
-
           bankAcountUserName.innerHTML =
-            "Hello Again " + storedUserData.fName + " " + storedUserData.lName;
+            "Hello  " + storedUserData.fName + " " + storedUserData.lName;
         }
-        setTimeout(bankAppVisible, 3000);
+        setTimeout(bankAppVisible, 1000);
       } else {
-        loginFormError.innerHTML = "User Not Found Register Your Info";
-        loginFormError.style.color = "red";
+        (loginFormError.innerHTML = "User Not Found Register Your Info"),
+          formError();
       }
     }
   });
@@ -216,7 +228,6 @@ function registerFormLoginForm() {
     bankContainer.style.opacity = "0";
     bankContainer.style.visibility = "hidden";
     bankContainer.style.rotate = "40deg";
-    bankAcountUserName.style.fontSize = "16px";
   }
 
   function loginFormVisible() {
@@ -236,7 +247,7 @@ function registerFormLoginForm() {
   logOutBtn.addEventListener("click", function () {
     bankAppUnVisible();
     loginFormError.innerHTML = "LogOut Successful!";
-    loginFormError.style.color = "red";
+    formError();
     loginForm.reset();
   });
 }
