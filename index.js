@@ -245,10 +245,7 @@ function registerFormLoginForm() {
     toggleH5.style.opacity = "1";
   }
   logOutBtn.addEventListener("click", function () {
-    bankAppUnVisible();
-    loginFormError.innerHTML = "LogOut Successful!";
-    formError();
-    loginForm.reset();
+    location.reload();
   });
 }
 registerFormLoginForm();
