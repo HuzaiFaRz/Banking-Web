@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @font-face {
   font-family: comfortaa;
@@ -14,7 +13,7 @@
   font-family: comfortaa;
 }
 
-.login-form-p input {
+input {
   cursor: text;
 }
 *:focus {
@@ -42,72 +41,57 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  padding: 0 50px;
 }
 
 .forms-container {
-  position: relative;
-  overflow: hidden;
   width: 100%;
-  height: 700px;
+  height: 100vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(15px);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1px);
+}
+.topHeader {
+  width: 100%;
+  height: 100px;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.register-form {
-  transition: all 0.4s linear;
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 0 50px;
-  z-index: 5;
-  opacity: 1;
-  visibility: visible;
-  scale: 1;
+.formChangeBtn {
+  padding: 10px 40px;
+  background-color: transparent;
+  border-radius: 8px;
+  color: var(--color-1);
+  border: 1px solid var(--color-1);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-.forms-container.active .register-form {
-  transition: all 0.4s linear;
-  z-index: 0;
-  opacity: 0;
-  visibility: hidden;
-  scale: 0;
-  left: -50%;
-}
+
+.register-form,
 .login-form {
   transition: all 0.4s linear;
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  right: 0;
+  width: 600px;
+  height: 600px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  text-align: center;
-  padding: 0 50px;
-  z-index: 0;
-  opacity: 0;
-  visibility: hidden;
-  scale: 0;
+  padding: 20px 20px;
+  gap: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.forms-container.active .login-form {
-  transition: all 0.4s linear;
-  z-index: 5;
-  opacity: 1;
-  visibility: visible;
-  scale: 1;
-  right: 50%;
+
+.login-form {
+  display: none;
+  height: 400px;
 }
 
 .User-Acount-User-Name {
@@ -116,11 +100,10 @@ body {
 .form-main-heading {
   color: var(--color-1);
 }
-.register-form-p,
-.login-form-p {
-  color: white;
+.register-error,
+.login-error {
+  color: red;
   font-size: 15px;
-  color: var(--color-1);
   font-weight: 900;
   letter-spacing: 2px;
 }
@@ -140,12 +123,7 @@ body {
   border: 1px solid var(--color-1);
   padding: 10px;
 }
-.Label-Login-Email,
-.Label-Login-Password,
-.Label-Register-Email,
-.Label-Register-Password,
-.Label-Register-First-Name,
-.Label-Register-Last-Name {
+label {
   position: relative;
   width: 100%;
   display: flex;
@@ -156,12 +134,7 @@ body {
   font-size: 14px;
   color: var(--color-1);
 }
-#Login-Email,
-#Login-Password,
-#Register-Email,
-#Register-Password,
-#Register-First-Name,
-#Register-Last-Name {
+input {
   padding-left: 12px;
   padding-top: 12px;
   padding-bottom: 12px;
@@ -197,39 +170,16 @@ body {
 .register-password-eye-slash.register-password-eye,
 .login-password-eye-slash.login-password-eye {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='rgba(255,255,255,1)'%3E%3Cpath d='M1.18164 12C2.12215 6.87976 6.60812 3 12.0003 3C17.3924 3 21.8784 6.87976 22.8189 12C21.8784 17.1202 17.3924 21 12.0003 21C6.60812 21 2.12215 17.1202 1.18164 12ZM12.0003 17C14.7617 17 17.0003 14.7614 17.0003 12C17.0003 9.23858 14.7617 7 12.0003 7C9.23884 7 7.00026 9.23858 7.00026 12C7.00026 14.7614 9.23884 17 12.0003 17ZM12.0003 15C10.3434 15 9.00026 13.6569 9.00026 12C9.00026 10.3431 10.3434 9 12.0003 9C13.6571 9 15.0003 10.3431 15.0003 12C15.0003 13.6569 13.6571 15 12.0003 15Z'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 20px;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  top: 55%;
-  right: 2%;
 }
-#Login-Email:invalid,
-#Login-Password:invalid,
-#Register-Email:invalid,
-#Register-Password:invalid,
-#Register-First-Name:invalid,
-#Register-Last-Name:invalid {
+input:invalid {
   transition: all 0.4s linear;
   border-bottom: 2px solid red;
 }
-#Login-Email:valid,
-#Login-Password:valid,
-#Register-Email:valid,
-#Register-Password:valid,
-#Register-First-Name:valid,
-#Register-Last-Name:valid {
+input:valid {
   transition: all 0.4s linear;
   border-bottom: 2px solid var(--color-1);
 }
-#Login-Email::placeholder,
-#Login-Password::placeholder,
-#Register-Email::placeholder,
-#Register-Password::placeholder,
-#Register-Last-Name::placeholder,
-#Register-First-Name::placeholder {
+input::placeholder {
   color: var(--color-1);
 }
 .login-btn,
@@ -241,106 +191,18 @@ body {
   border-radius: 8px;
   color: var(--color-1);
 }
-
-.toggle-container {
-  transition: all 0.3s ease-in-out;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 150px 0 0 100px;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-}
-
-.toggle-col {
-  transition: all 0.4s linear;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.toggle-container-right {
-  transition: all 0.4s linear;
-  z-index: 5;
-  opacity: 1;
-  visibility: visible;
-  left: 0;
-}
-.forms-container.active .toggle-container-right {
-  transition: all 0.4s linear;
-  z-index: 0;
-  opacity: 0;
-  visibility: hidden;
-  left: 100%;
-}
-.toggle-container-left {
-  transition: all 0.4s linear;
-  z-index: 0;
-  opacity: 0;
-  visibility: hidden;
-  top: 100%;
-}
-.forms-container.active .toggle-container-left {
-  transition: all 0.4s linear;
-  z-index: 5;
-  opacity: 1;
-  visibility: visible;
-  top: 0;
-}
-
-.toggle-heading {
-  font-weight: 900;
-}
-.toggle-heading,
-.toggle-h5 {
-  text-align: center;
-  color: var(--color-1);
-  padding-left: 10px;
-  padding-right: 10px;
-  width: 100%;
-  line-height: 30px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.toggle-h5 {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.toggle-container-login-btn,
-.toggle-container-register-btn {
-  padding: 10px 40px;
-  background-color: transparent;
-  border-radius: 8px;
-  color: var(--color-1);
-  border: 1px solid var(--color-1);
-  margin-top: 20px;
-  margin-bottom: 20px;
+.formChangeBtn:hover,
+.login-btn:hover,
+.register-btn:hover {
+  background-color: white;
+  color: black;
 }
 
 .bank-container {
   transition: all 0.8s ease-in-out;
-  position: absolute;
-  /* left: 0;
-  visibility: visible;
-  opacity: 1;
-  rotate: 0deg; */
-  rotate: 40deg;
-  opacity: 0;
-  visibility: hidden;
-  left: 100%;
-  width: 100%;
-  height: 100%;
-  z-index: 5000000;
+  display: none;
+  width: 600px;
+  height: 600px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(15px);
 }
@@ -424,52 +286,26 @@ input[type="number"]::-webkit-inner-spin-button {
   display: none;
 }
 
-@media (max-width: 1000px) {
-  body {
-    padding: 0 20px;
-    /* background-repeat: repeat; */
-    justify-content: flex-end;
+@media (max-width: 700px) {
+  .forms-container {
+    padding: 0 10px;
   }
+  .bank-container,
+  .register-form,
+  .login-form {
+    width: 100%;
+  }
+}
+
+button.hover {
+  background-color: white;
+}
+
+@media (max-width: 1000px) {
   .user-bank {
     font-size: 20px;
   }
-  .forms-container {
-    width: 100%;
-    height: 100%;
-  }
-  .register-form {
-    width: 100%;
-    height: 100%;
-    padding: 0 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-  }
-  .forms-container.active .login-form {
-    right: 0%;
-  }
-  .login-form {
-    width: 100%;
-    padding: 0 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-  }
-  .toggle-container {
-    position: inherit;
-    width: 100%;
-    z-index: -111;
-    opacity: 0;
-  }
-  .form-icons {
-    width: 100%;
-  }
-  .form-icons > a {
-    font-size: 16px;
-  }
-  .register-form-p {
-    font-size: 14px;
-  }
+
   label {
     font-size: 14px;
   }

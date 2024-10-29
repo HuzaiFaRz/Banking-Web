@@ -1,19 +1,7 @@
-var toggleContainerLoginBtn = document.querySelector(
-  ".toggle-container-login-btn"
-);
-var toggleContainerRegisterBtn = document.querySelector(
-  ".toggle-container-register-btn"
-);
-var formContainer = document.querySelector(".forms-container");
 var registerPasswordEyeSlash = document.querySelector(
   ".register-password-eye-slash"
 );
 var loginPasswordEyeSlash = document.querySelector(".login-password-eye-slash");
-var formContainer = document.querySelector(".forms-container");
-var formContainerToggle = document.querySelector(".toggle-container");
-var toggleHeading1 = document.querySelector("#toggle-heading-1");
-var toggleHeading2 = document.querySelector("#toggle-heading-2");
-var toggleH5 = document.querySelector(".toggle-h5");
 var registerForm = document.querySelector(".register-form");
 var registerUserFirstName = document.querySelector("#Register-First-Name");
 var registerUserLastName = document.querySelector("#Register-Last-Name");
@@ -23,8 +11,6 @@ var userAcountUserName = document.querySelector(".User-Acount-User-Name");
 var loginForm = document.querySelector(".login-form");
 var loginUserEmail = document.querySelector("#Login-Email");
 var loginUserPassword = document.querySelector("#Login-Password");
-var loginFormError = document.querySelector(".login-form-p");
-var registerFormError = document.querySelector(".register-form-p");
 var bankContainer = document.querySelector(".bank-container");
 var logOutBtn = document.querySelector(".log-out");
 var deleteAcountBtn = document.querySelector(".delete-account");
@@ -34,42 +20,26 @@ var depositWithdrawInput = document.querySelector(".deposit-withdraw-input");
 var depositBtn = document.querySelector(".deposit-btn");
 var withDrawBtn = document.querySelector(".withdraw-btn");
 var bankError = document.querySelector(".number-error");
+const topHeader = document.querySelector(".topHeader");
 
-function toGgleLoginRegisterContainer() {
-  toggleContainerLoginBtn.addEventListener("click", () => {
-    formContainer.classList.add("active");
+var formChangeBtn = document.querySelector(".formChangeBtn");
+var registerError = document.querySelector(".register-error");
+var loginError = document.querySelector(".login-error");
+function formChangeHandler() {
+  formChangeBtn.addEventListener("click", () => {
+    formChangeBtn.classList.toggle("active");
+    if (formChangeBtn.classList.contains("active")) {
+      formChangeBtn.textContent = "SignUp";
+      loginForm.style.display = "flex";
+      registerForm.style.display = "none";
+    } else {
+      formChangeBtn.textContent = "LogIn";
+      registerForm.style.display = "flex";
+      loginForm.style.display = "none";
+    }
   });
-  toggleContainerRegisterBtn.addEventListener("click", () => {
-    formContainer.classList.remove("active");
-  });
 }
-toGgleLoginRegisterContainer();
-function formError() {
-  registerFormError.style.backgroundColor = "rgb(189, 132, 132)";
-  registerFormError.style.color = "white";
-  registerFormError.style.padding = "10px 15px";
-  registerFormError.style.borderRadius = "15px";
-  registerFormError.style.fontSize = "13px";
-  loginFormError.style.backgroundColor = "rgb(189, 132, 132)";
-  loginFormError.style.color = "white";
-  loginFormError.style.padding = "10px 15px";
-  loginFormError.style.borderRadius = "15px";
-  loginFormError.style.fontSize = "13px";
-}
-function formSuccess() {
-  registerFormError.style.backgroundColor = "white";
-  registerFormError.style.color = "green";
-  registerFormError.style.padding = "10px 15px";
-  registerFormError.style.borderRadius = "15px";
-  registerFormError.style.fontSize = "13px";
-  registerFormError.style.fontWeight = "900";
-  loginFormError.style.backgroundColor = "white";
-  loginFormError.style.color = "green";
-  loginFormError.style.padding = "10px 15px";
-  loginFormError.style.borderRadius = "15px";
-  loginFormError.style.fontSize = "13px";
-  loginFormError.style.fontWeight = "900";
-}
+formChangeHandler();
 
 function regisTerLoginPasswordEye() {
   registerPasswordEyeSlash.addEventListener("click", () => {
@@ -96,37 +66,23 @@ function registerFormLoginForm() {
   registerForm.addEventListener("submit", function (e) {
     e.preventDefault();
     if (registerUserFirstName.value === "") {
-      return (
-        (registerFormError.innerHTML = "Please Fill First Name Field"),
-        formError()
-      );
+      return (registerUserFirstName.style.border = "1px solid red");
     } else if (registerUserLastName.value === "") {
-      return (
-        (registerFormError.innerHTML = "Please Fill Last Name Field"),
-        formError()
-      );
+      return (registerUserLastName.style.border = "1px solid red");
     } else if (registerUserEmail.value === "") {
-      return (
-        (registerFormError.innerHTML = "Please Fill Email Field"), formError()
-      );
+      return (registerUserEmail.style.border = "1px solid red");
     } else if (registerUserPassword.value === "") {
-      return (
-        (registerFormError.innerHTML = "Please Fill Password Field"),
-        formError()
-      );
+      return (registerUserPassword.style.border = "1px solid red");
     } else if (registerUserPassword.value.length < 8) {
-      return (
-        (registerFormError.innerHTML = "Password Must Be 8 Least"), formError()
-      );
+      return (registerError.textContent = "Password Must Be 8 Least");
     } else {
+      document.querySelector("input").style.border = "none";
       var userKey = "user_" + registerUserEmail.value;
 
       if (localStorage.getItem(userKey)) {
         return (
-          (registerFormError.innerHTML = "User Already Exists. Please log in."),
-          formError(),
-          setTimeout(loginFormVisible, 1000),
-          registerForm.reset()
+          (registerError.innerHTML = "User Already Exists. Please log in."),
+          (registerError.style.color = "red")
         );
       }
       var registerFormDataStore = {
@@ -139,17 +95,13 @@ function registerFormLoginForm() {
 
       localStorage.setItem(userKey, JSON.stringify(registerFormDataStore));
 
-      (registerFormError.innerHTML = "Registered Successful!"), formSuccess();
-      registerForm.reset();
-      setTimeout(loginFormVisible, 1000);
-    }
+      registerError.innerHTML = "Registered Successful!";
+      registerError.style.color = "green";
 
-    // eHeading2Value = 3;
-    // function loginFormVisibleCounter() {
-    //   toggleHeading2.innerHTML = eHeading2Value - 1;
-    //   setTimeout(loginFormVisibleCounter, 1000);
-    // }
-    // loginFormVisibleCounter();
+      registerForm.reset();
+      registerForm.style.display = "none";
+      loginForm.style.display = "flex";
+    }
   });
   deleteAcountBtn.addEventListener("click", function () {
     location.reload();
@@ -158,14 +110,11 @@ function registerFormLoginForm() {
     j.preventDefault();
 
     if (loginUserEmail.value === "") {
-      return (
-        (loginFormError.innerHTML = "Please Fill Email Field"), formError()
-      );
+      return (loginUserEmail.style.border = "1px solid red");
     } else if (loginUserPassword.value === "") {
-      return (
-        (loginFormError.innerHTML = "Please Fill Password Field"), formError()
-      );
+      return (loginUserPassword.style.border = "1px solid red");
     } else {
+      document.querySelector("input").style.border = "none";
       var userKey = "user_" + loginUserEmail.value;
       var storedUserData = JSON.parse(localStorage.getItem(userKey));
 
@@ -174,76 +123,24 @@ function registerFormLoginForm() {
         storedUserData.email === loginUserEmail.value &&
         storedUserData.password === loginUserPassword.value
       ) {
-        loginFormError.innerHTML = "Login Successful!";
-        formSuccess();
-
+        loginError.innerHTML = "Login Successful!";
+        loginError.style.color = "green";
+        topHeader.style.display = "none";
         function bankAppVisible() {
-          loginForm.style.right = "0";
-          loginForm.style.zIndex = "0";
-          loginForm.style.opacity = "0";
-          loginForm.style.visibility = "hidden";
-          loginForm.style.scale = "0";
-
-          registerForm.style.transition = "all 0.4s linear";
-          registerForm.style.zIndex = "0";
-          registerForm.style.opacity = "0";
-          registerForm.style.visibility = "hidden";
-          registerForm.style.scale = "0";
-          registerForm.style.left = "-50%";
-
-          formContainerToggle.style.top = "-100%";
-
-          bankContainer.style.left = "0%";
-          bankContainer.style.opacity = "1";
-          bankContainer.style.visibility = "visible";
-          bankContainer.style.rotate = "0deg";
+          loginForm.style.display = "none";
+          registerForm.style.display = "none";
+          bankContainer.style.display = "flex";
           bankAcountUserName.innerHTML =
             "Hello  " + storedUserData.fName + " " + storedUserData.lName;
         }
-        setTimeout(bankAppVisible, 1000);
+        bankAppVisible();
       } else {
-        (loginFormError.innerHTML = "User Not Found Register Your Info"),
-          formError();
+        loginError.innerHTML = "User Not Found Register Your Info";
+        loginError.style.color = "red";
       }
     }
   });
 
-  function bankAppUnVisible() {
-    loginForm.style.right = "50%";
-    loginForm.style.zIndex = "1";
-    loginForm.style.opacity = "1";
-    loginForm.style.visibility = "visible";
-    loginForm.style.scale = "1";
-
-    registerForm.style.transition = "all 0.4s linear";
-    registerForm.style.zIndex = "0";
-    registerForm.style.opacity = "0";
-    registerForm.style.visibility = "hidden";
-    registerForm.style.scale = "0";
-    registerForm.style.left = "-50%";
-
-    formContainerToggle.style.top = "0%";
-
-    bankContainer.style.left = "100%";
-    bankContainer.style.opacity = "0";
-    bankContainer.style.visibility = "hidden";
-    bankContainer.style.rotate = "40deg";
-  }
-
-  function loginFormVisible() {
-    formContainer.classList.add("active");
-  }
-
-  function toggleContentUnVisible() {
-    toggleContainerRegisterBtn.style.trasition = "all 0.6s linear";
-    toggleContainerRegisterBtn.style.opacity = "0";
-    toggleH5.style.opacity = "0";
-  }
-  function toggleContentVisible() {
-    toggleContainerRegisterBtn.style.trasition = "all 0.1s linear";
-    toggleContainerRegisterBtn.style.opacity = "1";
-    toggleH5.style.opacity = "1";
-  }
   logOutBtn.addEventListener("click", function () {
     location.reload();
   });
