@@ -1,5 +1,5 @@
 var registerPasswordEyeSlash = document.querySelector(
-  ".register-password-eye-slash"
+  ".register-password-eye-slash",
 );
 var loginPasswordEyeSlash = document.querySelector(".login-password-eye-slash");
 var registerForm = document.querySelector(".register-form");
@@ -103,9 +103,9 @@ function registerFormLoginForm() {
       loginForm.style.display = "flex";
     }
   });
-  deleteAcountBtn.addEventListener("click", function () {
-    location.reload();
-  });
+  // deleteAcountBtn.addEventListener("click", function () {
+  //   // location.reload();
+  // });
   loginForm.addEventListener("submit", function (j) {
     j.preventDefault();
 
