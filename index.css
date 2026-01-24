@@ -319,4 +319,7 @@ button.hover {
   .delete-account {
     font-size: 12px;
   }
+  .register-error {
+    font-size: 12px;
+  }
 }

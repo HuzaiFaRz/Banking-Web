@@ -29,10 +29,12 @@ function formChangeHandler() {
   formChangeBtn.addEventListener("click", () => {
     formChangeBtn.classList.toggle("active");
     if (formChangeBtn.classList.contains("active")) {
+      registerForm.reset();
       formChangeBtn.textContent = "SignUp";
       loginForm.style.display = "flex";
       registerForm.style.display = "none";
     } else {
+      loginForm.reset();
       formChangeBtn.textContent = "LogIn";
       registerForm.style.display = "flex";
       loginForm.style.display = "none";
@@ -157,7 +159,11 @@ function deposit() {
       bankError.innerHTML = "Enter a valid deposit amount";
     } else {
       currentBankBalance += depositAmount;
-      userBankAcountBalance.innerHTML = currentBankBalance.toFixed(2);
+      userBankAcountBalance.innerHTML = new Intl.NumberFormat("en-PK", {
+        style: "currency",
+        currency: "PKR",
+        minimumFractionDigits: 2,
+      }).format(currentBankBalance.toFixed(2));
       depositWithdrawInput.value = "";
       bankError.innerHTML = "";
     }
@@ -175,7 +181,11 @@ function withdraw() {
       bankError.innerHTML = "Insufficient balance";
     } else {
       currentBankBalance -= withdrawAmount;
-      userBankAcountBalance.innerHTML = currentBankBalance;
+      userBankAcountBalance.innerHTML = new Intl.NumberFormat("en-PK", {
+        style: "currency",
+        currency: "PKR",
+        minimumFractionDigits: 2,
+      }).format(currentBankBalance.toFixed(2));
       depositWithdrawInput.value = "";
       bankError.innerHTML = "";
     }
